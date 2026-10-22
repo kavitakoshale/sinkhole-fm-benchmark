@@ -98,8 +98,9 @@ The predictions of the other settings and studies are not distributed. These are
 the all-feature and shared-schema grids, the learning curves, label noise, the realistic regime, transfer, context
 selection, cost, maps and factors. Their per-fold metrics and summaries are in `results/`, and the scripts regenerate the
 predictions:
-- **Baselines** need no GPU and regenerate exactly. Predictions of XGBoost, random forest, logistic regression and
-  tuned XGBoost rebuilt on a second machine were identical to the released ones on the headline Florida folds. Tuned models refit
+- **Baselines** need no GPU and are deterministic for a given CPU type. Predictions of XGBoost, random forest, logistic
+  regression and tuned XGBoost rebuilt on a second machine were identical to the released ones on the headline Florida
+  folds; on a different CPU type the metrics moved by less than 0.0001 AUC. Tuned models refit
   from the search records in `results/tuning_cache/` in seconds, without repeating the 100-trial searches.
 - **Foundation models** need a GPU for full-size contexts; their weights download from Hugging Face on first use. Expect
   agreement within numerical precision rather than bit-identical predictions; the bf16 and fp32 runs differ by at most

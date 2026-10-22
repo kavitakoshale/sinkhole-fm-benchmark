@@ -6,7 +6,7 @@ previous one:
 
 | Level | What it shows | Needs | Time |
 |---|---|---|---|
-| **A. Verify** | the released tables, predictions and headline numbers are consistent, and the baselines reproduce exactly | Python environment, no GPU | minutes |
+| **A. Verify** | the released tables, predictions and headline numbers are consistent, and the baselines reproduce | Python environment, no GPU | minutes |
 | **B. Rerun the baselines** | every GBDT / classical result, from the committed folds | CPU cores (many for tuning) | hours |
 | **C. Rerun the foundation models** | every TabPFN / TabICL / Kumo result and every study | NVIDIA GPU, ≈ 10 GiB memory | ≈ 12 h on the hardware below |
 | **D. Rebuild the benchmark tables** | the tables themselves, from public raw data | ≈ 8 GB download | a day |
@@ -42,7 +42,8 @@ python scripts/collect_results.py && git diff --exit-code results/README.md
 What each check shows, with indicative run times (4 threads per process):
 
 - `reproduce_check.py` (about 40 s) refits three baselines and compares every per-fold metric with
-  `results/florida_no_landcover/metrics_long.csv`. Expected: maximum difference 0.
+  `results/florida_no_landcover/metrics_long.csv`. Expected: identical on the CPUs used for the paper; on another CPU
+  type differences of less than 0.0001 AUC (the check allows 0.001).
 - `verify_headline.py --checks comparisons --tasks florida` (about 5 min) recomputes Table 2's Florida rows from the
   released predictions. Pooled AUC, PR-AUC and ΔAUC must be identical. The bootstrap intervals are printed next to the
   committed ones and differ by Monte-Carlo noise of up to 0.006, because `compare_models.py` draws every setting of a
@@ -90,7 +91,8 @@ folds refits in 17 s and gives predictions identical to the released ones. To re
 point `TUNE_CACHE_DIR` at an empty directory. That took hours on 128 cores; the budget is set by `TUNE_TRIALS`,
 `TUNE_INNER_FOLDS`, `TUNE_MAX_ROUNDS` and the other variables listed in `baselines/tuned.py`.
 
-Baselines are deterministic: on the same folds they reproduce the committed predictions exactly, on any machine tested so far.
+Baselines are deterministic for a given CPU type: they reproduced the committed predictions bit for bit on the two
+machines used for the paper, and within 0.0001 AUC on a different CPU type, where BLAS kernels round differently.
 
 ## 4. Level C: rerun the foundation models (GPU)
 
@@ -197,7 +199,7 @@ python scripts/collect_results.py                                              #
 
 Foundation-model predictions depend on GPU kernels and precision, so a rerun agrees with the committed results within
 numerical precision rather than bit for bit. For scale, the bf16 and fp32 grids differ by at most 0.006 AUC on every
-setting. Every baseline reproduces exactly. Bootstrap intervals are Monte-Carlo estimates and move slightly whenever the
+setting. Baselines reproduce bit for bit on the same CPU type and within 0.0001 AUC on others. Bootstrap intervals are Monte-Carlo estimates and move slightly whenever the
 set of settings in a table changes. The decision metrics treat tied scores by their expected value, so they do not depend on
 the CPU.
 

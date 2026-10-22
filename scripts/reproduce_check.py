@@ -3,6 +3,8 @@ metric with the committed results (results/florida_no_landcover/metrics_long.csv
 
 Runs XGBoost (hand-set), random forest and logistic regression on no_landcover x ring x {spatial5, temporal} (~1-2 min on
 4 cores), writes into a temporary results/florida_repro_check/ that is removed afterwards, and exits non-zero on a mismatch.
+On the CPUs used for the paper the metrics are identical; another CPU type can change them in the fifth decimal (BLAS
+kernels differ), hence a tolerance of 1e-3, below the precision the paper reports.
 
   python scripts/reproduce_check.py
   python scripts/reproduce_check.py --models xgboost --protocols temporal     # quicker
@@ -25,7 +27,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--models", nargs="*", default=["xgboost", "random_forest", "logreg"])
     ap.add_argument("--protocols", nargs="*", default=["spatial5", "temporal"])
-    ap.add_argument("--tol", type=float, default=1e-6)
+    ap.add_argument("--tol", type=float, default=1e-3)
     a = ap.parse_args()
     out = f"{ROOT}/results/florida_{TAG}"
     env = {**os.environ, "CUDA_VISIBLE_DEVICES": ""}
@@ -45,7 +47,7 @@ def main():
     print(diff.to_string())
     if (diff > a.tol).any():
         sys.exit("FAIL: reproduced metrics differ from the committed results")
-    print("OK: baselines reproduce the committed results")
+    print("OK: baselines reproduce the committed results " + ("exactly" if (diff == 0).all() else f"within {a.tol:g}"))
 
 
 if __name__ == "__main__":
