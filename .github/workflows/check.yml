@@ -1,0 +1,28 @@
+name: check
+# CPU-only: no GPU, no model weights, no raw data. Verifies the checksums, that results/README.md regenerates from results/,
+# that the untuned baselines reproduce the committed per-fold metrics on the headline Florida folds, and that the headline
+# Florida comparison table recomputes from the released out-of-fold predictions.
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    env:
+      CUDA_VISIBLE_DEVICES: ""
+      OMP_NUM_THREADS: "4"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the baseline stack (versions of requirements.txt, without torch and the foundation models)
+        run: pip install numpy==2.5.4 pandas==3.0.6 pyarrow==26.0.0 scipy==1.18.1 scikit-learn==1.9.1 xgboost==3.4.1 lightgbm==4.7.0 catboost==1.2.10 tabulate==0.10.0 python-dotenv==1.2.4 optuna==5.0.0 matplotlib==3.11.2
+      - name: Checksums of tables, results and rasters
+        run: sha256sum -c MANIFEST.sha256 --quiet
+      - name: Byte-compile all code
+        run: python -m compileall -q baselines scripts
+      - name: results/README.md regenerates from results/
+        run: python scripts/collect_results.py && git diff --exit-code results/README.md
+      - name: Baselines reproduce the committed metrics
+        run: python scripts/reproduce_check.py
+      - name: Headline Florida comparisons recompute from the released predictions
+        run: python scripts/verify_headline.py --checks comparisons --tasks florida

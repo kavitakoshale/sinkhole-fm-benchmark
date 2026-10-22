@@ -1,0 +1,30 @@
+# secrets / machine-specific config
+.env
+
+# environments & caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+catboost_info/
+.ipynb_checkpoints/
+
+# raw downloads (~8 GB) -- rebuild with the scripts in scripts/ (see data/README.md)
+data/raw/
+
+# large intermediates; the benchmark tables themselves ARE committed
+data/processed/kentucky/*.gpkg
+data/processed/**/log_*.txt
+
+# model weights never go in git
+*.ckpt
+*.safetensors
+*.pt
+
+# local runs
+results/logs/
+results/*_repro_check/
+.venv-gdal/
+
+# figures written by the scripts (paper figures are produced separately)
+results/**/*.png

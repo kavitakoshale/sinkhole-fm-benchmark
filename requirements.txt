@@ -1,0 +1,42 @@
+# Python 3.12 (>= 3.11 required by structured-data-models). Versions = those used for the committed results.
+#
+# Setup:  uv venv .venv --python 3.12 && source .venv/bin/activate && uv pip install -r requirements.txt
+#         (the default PyPI torch wheel on Linux is CUDA-enabled; for a specific CUDA build install torch
+#          first from https://download.pytorch.org/whl/cu12x and then this file)
+#
+# Only needed to convert the FAVA FileGDB rasters (not to run experiments): a GDAL build with the OpenFileGDB raster
+# driver, installed with uv into a separate venv (see data/README.md, scripts/convert_fava_gdb.py); no conda needed.
+# requirements.lock.txt = `uv pip freeze` of the environment that produced the committed results.
+
+# --- core / baselines
+numpy==2.5.4
+pandas==3.0.6
+pyarrow==26.0.0
+scipy==1.18.1
+scikit-learn==1.9.1
+xgboost==3.4.1
+lightgbm==4.7.0
+catboost==1.2.10
+tabulate==0.10.0
+python-dotenv==1.2.4
+
+# --- geospatial (data pipelines, Kentucky runner reads gpkg when present)
+geopandas==1.2.0
+pyogrio==0.13.0
+shapely==2.2.0
+pyproj==3.8.0
+rasterio==1.5.2
+scikit-image==0.26.0
+requests==2.34.2
+
+# --- analysis extras
+shap==0.54.1
+optuna==5.0.0
+matplotlib==3.11.2
+
+# --- tabular foundation models
+torch>=2.7
+tabpfn==9.2.0
+tabicl==2.2.0
+structured-data-models==0.2.1
+huggingface-hub==2.2.0

@@ -1,0 +1,12 @@
+# Statewide Florida susceptibility maps (1000 m grid, 147084 land cells)
+
+Each model is fit once on the whole headline table (no_landcover × ring: 2,736 reports + 2,736 ring pseudo-absences) and scores every grid cell; for the FMs this is the deployment mode (one fixed context, no training). `auc_*_vs_land` is a sanity check only: map value at the reports (which were in the context) vs 20,000 random land cells. GeoTIFFs: `results/maps/florida_<model>_<res>m.tif` (EPSG:3086). Figure: `results/maps/florida_maps.png`.
+
+| model                  |   cells |   auc_verified53_vs_land |   auc_all_reports_vs_land |   share_cells_p>0.5 |   spearman_vs_xgboost |   spearman_vs_xgboost_tuned |   spearman_vs_tabicl |   spearman_vs_kumo_tabular |   spearman_vs_tabpfn |
+|:-----------------------|--------:|-------------------------:|--------------------------:|--------------------:|----------------------:|----------------------------:|---------------------:|---------------------------:|---------------------:|
+| tabpfn                 |  147084 |                   0.9533 |                    0.952  |              0.0457 |                0.8916 |                      0.8953 |               0.9607 |                     0.9588 |             nan      |
+| xgboost                |  147084 |                   0.9318 |                    0.9221 |              0.0807 |              nan      |                      0.9486 |               0.9076 |                     0.8996 |               0.8916 |
+| xgboost_tuned          |  147084 |                   0.9134 |                    0.9201 |              0.0809 |                0.9486 |                    nan      |               0.9065 |                     0.9107 |               0.8953 |
+| tabicl                 |  147084 |                   0.9516 |                    0.9465 |              0.0528 |                0.9076 |                      0.9065 |             nan      |                     0.9455 |               0.9607 |
+| kumo_tabular           |  147084 |                   0.973  |                    0.9642 |              0.0435 |                0.8996 |                      0.9107 |               0.9455 |                   nan      |               0.9588 |
+| fgs_favorability_value |  146195 |                   0.8706 |                    0.8175 |            nan      |                0.4181 |                      0.4149 |               0.351  |                     0.3743 |               0.3225 |

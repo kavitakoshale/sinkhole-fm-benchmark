@@ -1,0 +1,13 @@
+features,neg_strategy,protocol,FGS map,LR,RF,XGB(def),XGB,LGBM,CatBoost
+all,global,random5,0.819,0.946,0.965,0.964,0.967,0.967,0.967
+all,global,spatial5,0.814,0.938,0.955,0.953,0.957,0.956,0.958
+all,global,temporal,0.81,0.924,0.949,0.947,0.95,0.95,0.952
+all,ring,random5,0.62,0.836,0.894,0.887,0.893,0.892,0.891
+all,ring,spatial5,0.617,0.811,0.867,0.857,0.871,0.866,0.867
+all,ring,temporal,0.624,0.783,0.841,0.844,0.85,0.852,0.848
+no_landcover,global,random5,0.819,0.918,0.943,0.939,0.944,0.944,0.946
+no_landcover,global,spatial5,0.814,0.896,0.912,0.907,0.914,0.914,0.915
+no_landcover,global,temporal,0.81,0.887,0.913,0.913,0.915,0.914,0.92
+no_landcover,ring,random5,0.62,0.775,0.843,0.829,0.839,0.838,0.838
+no_landcover,ring,spatial5,0.617,0.726,0.772,0.759,0.772,0.771,0.767
+no_landcover,ring,temporal,0.624,0.703,0.766,0.763,0.775,0.775,0.768

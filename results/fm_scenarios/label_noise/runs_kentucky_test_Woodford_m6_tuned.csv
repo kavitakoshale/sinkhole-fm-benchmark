@@ -1,0 +1,11 @@
+task,fold,kind,rate,rep,model,n_train,pos_train,roc_auc,pr_auc,seconds
+kentucky,test_Woodford,symmetric,0.0,0,xgboost_tuned,24464,3542,0.95880390179817,0.8656142623978285,867.97
+kentucky,test_Woodford,pos_to_neg,0.0,0,xgboost_tuned,24464,3542,0.95880390179817,0.8656142623978285,867.97
+kentucky,test_Woodford,symmetric,0.05,0,xgboost_tuned,24464,4399,0.9555447638113512,0.8621024134716134,144.36
+kentucky,test_Woodford,symmetric,0.1,0,xgboost_tuned,24464,5262,0.952794356197557,0.8559009624173729,395.67
+kentucky,test_Woodford,symmetric,0.2,0,xgboost_tuned,24464,6993,0.9499457044613895,0.8457523303336214,117.17
+kentucky,test_Woodford,symmetric,0.3,0,xgboost_tuned,24464,8771,0.9351687800408526,0.8113260109330711,82.49
+kentucky,test_Woodford,pos_to_neg,0.05,0,xgboost_tuned,24464,3365,0.9582341775625459,0.8631417418918704,458.75
+kentucky,test_Woodford,pos_to_neg,0.1,0,xgboost_tuned,24464,3188,0.958155337800268,0.8602231411075658,648.43
+kentucky,test_Woodford,pos_to_neg,0.2,0,xgboost_tuned,24464,2834,0.9557718712195875,0.8500238199629838,841.33
+kentucky,test_Woodford,pos_to_neg,0.3,0,xgboost_tuned,24464,2479,0.9558071963223757,0.8550583010576697,1591.67

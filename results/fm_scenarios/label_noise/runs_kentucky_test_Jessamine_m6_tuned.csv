@@ -1,0 +1,11 @@
+task,fold,kind,rate,rep,model,n_train,pos_train,roc_auc,pr_auc,seconds
+kentucky,test_Jessamine,symmetric,0.0,0,xgboost_tuned,21639,3390,0.9705748663101604,0.8820399772955057,626.28
+kentucky,test_Jessamine,pos_to_neg,0.0,0,xgboost_tuned,21639,3390,0.9705748663101604,0.8820399772955057,626.28
+kentucky,test_Jessamine,symmetric,0.05,0,xgboost_tuned,21639,4164,0.9680624734742381,0.8762367400741864,412.27
+kentucky,test_Jessamine,symmetric,0.1,0,xgboost_tuned,21639,4948,0.96540132416603,0.8667582599321472,258.65
+kentucky,test_Jessamine,symmetric,0.2,0,xgboost_tuned,21639,6354,0.9581151642475172,0.8481662921841812,192.98
+kentucky,test_Jessamine,symmetric,0.3,0,xgboost_tuned,21639,7890,0.9497290552584671,0.8317406669650479,140.96
+kentucky,test_Jessamine,pos_to_neg,0.05,0,xgboost_tuned,21639,3220,0.9707259994907054,0.8826615146645611,633.48
+kentucky,test_Jessamine,pos_to_neg,0.1,0,xgboost_tuned,21639,3051,0.9703425855190561,0.8787703614810808,813.57
+kentucky,test_Jessamine,pos_to_neg,0.2,0,xgboost_tuned,21639,2712,0.9696681096681097,0.8782778922211465,1062.75
+kentucky,test_Jessamine,pos_to_neg,0.3,0,xgboost_tuned,21639,2373,0.968176088617265,0.8677343535090484,452.8

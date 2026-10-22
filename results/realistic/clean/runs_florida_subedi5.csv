@@ -1,0 +1,15 @@
+region,feature_set,n_verified,variant,fold,rep,model,n_train,pos_train,n_test,pos_test,roc_auc,pr_auc,seconds
+florida,subedi5,53,train_all_others,all,0,logreg,5391,2683,81,53,0.6091644204851753,0.7448695939936343,0.0
+florida,subedi5,53,train_outside_test_blocks,all,0,logreg,3604,1582,81,53,0.6206199460916443,0.7312363832989109,0.0
+florida,subedi5,53,train_all_others,all,0,random_forest,5391,2683,81,53,0.7348382749326146,0.8539716039587748,2.1
+florida,subedi5,53,train_outside_test_blocks,all,0,random_forest,3604,1582,81,53,0.6546495956873316,0.7597678396691667,2.0
+florida,subedi5,53,train_all_others,all,0,xgboost,5391,2683,81,53,0.7014824797843665,0.8359452515138479,0.5
+florida,subedi5,53,train_outside_test_blocks,all,0,xgboost,3604,1582,81,53,0.6549865229110512,0.8081830333406117,0.4
+florida,subedi5,53,train_all_others,all,0,lightgbm,5391,2683,81,53,0.7142857142857143,0.841346002603559,0.7
+florida,subedi5,53,train_outside_test_blocks,all,0,lightgbm,3604,1582,81,53,0.6597035040431267,0.7812425477916602,0.6
+florida,subedi5,53,train_all_others,all,0,tabpfn,5391,2683,81,53,0.7446091644204852,0.8634146877921205,1.8
+florida,subedi5,53,train_outside_test_blocks,all,0,tabpfn,3604,1582,81,53,0.6610512129380053,0.769013256557271,1.1
+florida,subedi5,53,train_all_others,all,0,tabicl,5391,2683,81,53,0.7398921832884097,0.8611547199481209,1.6
+florida,subedi5,53,train_outside_test_blocks,all,0,tabicl,3604,1582,81,53,0.6384770889487871,0.7568308293353758,1.5
+florida,subedi5,53,train_all_others,all,0,kumo_tabular,5391,2683,81,53,0.7601078167115903,0.8785362057523558,9.9
+florida,subedi5,53,train_outside_test_blocks,all,0,kumo_tabular,3604,1582,81,53,0.6502695417789758,0.7566856135575427,9.3

@@ -1,0 +1,8 @@
+region,feature_set,n_verified,variant,fold,rep,model,n_train,pos_train,n_test,pos_test,roc_auc,pr_auc,seconds
+minnesota,sat_nolc,827,train_all_others,all,0,xgboost_tuned,25033,12317,1151,827,0.8452386283905832,0.9322338867341207,524.2
+minnesota,sat_nolc,827,train_outside_test_blocks,all,0,xgboost_tuned,122,45,1151,827,0.6223558302357174,0.7820634043854297,28.1
+minnesota,sat_nolc,827,verified_only_spatial5,f0,0,xgboost_tuned,918,673,233,154,0.8885418379089265,0.9390297239508754,81.3
+minnesota,sat_nolc,827,verified_only_spatial5,f1,0,xgboost_tuned,955,689,196,138,0.827336331834083,0.924715263724012,110.1
+minnesota,sat_nolc,827,verified_only_spatial5,f2,0,xgboost_tuned,876,627,275,200,0.7474,0.8910554840018321,65.1
+minnesota,sat_nolc,827,verified_only_spatial5,f3,0,xgboost_tuned,897,626,254,201,0.7343471322632124,0.9025718556418109,126.0
+minnesota,sat_nolc,827,verified_only_spatial5,f4,0,xgboost_tuned,958,693,193,134,0.8116620288388565,0.895897529990965,165.8

@@ -1,0 +1,15 @@
+region,feature_set,n_verified,variant,fold,rep,model,n_train,pos_train,n_test,pos_test,roc_auc,pr_auc,seconds
+florida,sat_nolc,53,train_all_others,all,0,logreg,5391,2683,81,53,0.6981132075471698,0.7985655826900354,0.1
+florida,sat_nolc,53,train_outside_test_blocks,all,0,logreg,3604,1582,81,53,0.6792452830188679,0.7851695352579124,0.0
+florida,sat_nolc,53,train_all_others,all,0,random_forest,5391,2683,81,53,0.6933962264150942,0.8241884232210306,2.6
+florida,sat_nolc,53,train_outside_test_blocks,all,0,random_forest,3604,1582,81,53,0.6145552560646901,0.775763124326692,1.9
+florida,sat_nolc,53,train_all_others,all,0,xgboost,5391,2683,81,53,0.7095687331536388,0.8270954397459798,1.2
+florida,sat_nolc,53,train_outside_test_blocks,all,0,xgboost,3604,1582,81,53,0.6287061994609165,0.7767439311379141,1.0
+florida,sat_nolc,53,train_all_others,all,0,lightgbm,5391,2683,81,53,0.7149595687331536,0.833023921877518,0.9
+florida,sat_nolc,53,train_outside_test_blocks,all,0,lightgbm,3604,1582,81,53,0.6388140161725068,0.773376240445097,0.8
+florida,sat_nolc,53,train_all_others,all,0,tabpfn,5391,2683,81,53,0.7789757412398922,0.8797189273341586,12.9
+florida,sat_nolc,53,train_outside_test_blocks,all,0,tabpfn,3604,1582,81,53,0.6442048517520216,0.778522147791932,1.5
+florida,sat_nolc,53,train_all_others,all,0,tabicl,5391,2683,81,53,0.7520215633423181,0.8604257764235557,2.0
+florida,sat_nolc,53,train_outside_test_blocks,all,0,tabicl,3604,1582,81,53,0.657345013477089,0.7789930138494655,1.7
+florida,sat_nolc,53,train_all_others,all,0,kumo_tabular,5391,2683,81,53,0.7911051212938005,0.89661115733568,12.4
+florida,sat_nolc,53,train_outside_test_blocks,all,0,kumo_tabular,3604,1582,81,53,0.6597035040431266,0.7921528474514352,10.0

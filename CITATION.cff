@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this code or benchmark, please cite the paper below."
+title: "sinkhole-fm-benchmark: tabular foundation models vs tuned gradient boosting for sinkhole susceptibility"
+type: software
+version: 1.0.0
+date-released: 2026-10-22
+license: MIT
+# add after publishing: repository-code (GitHub URL) and doi (Zenodo DOI of the archived release)
+keywords:
+  - sinkhole susceptibility
+  - tabular foundation models
+  - in-context learning
+  - spatial cross-validation
+  - gradient boosting
+  - benchmark
+authors:
+  - family-names: Banjare
+    given-names: Kavita
+    email: kbanjare.phd2024.ce@nitrr.ac.in
+    affiliation: "National Institute of Technology Raipur"
+preferred-citation:
+  type: article
+  title: "Tabular foundation models versus tuned gradient boosting for sinkhole susceptibility in data-poor karst regions"
+  journal: "Computers & Geosciences"
+  status: submitted
+  year: 2026
+  authors:
+    - family-names: Banjare
+      given-names: Kavita
+      email: kbanjare.phd2024.ce@nitrr.ac.in
+      affiliation: "National Institute of Technology Raipur"

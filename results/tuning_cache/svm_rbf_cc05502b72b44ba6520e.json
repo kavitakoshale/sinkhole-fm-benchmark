@@ -1,0 +1,24 @@
+{
+ "best_params": {
+  "C": 4.95414121257966,
+  "gamma": 0.00434982924277714
+ },
+ "best_value": 0.7528545685509604,
+ "best_iters": [
+  null,
+  null,
+  null,
+  null
+ ],
+ "n_trials": 40,
+ "n_pruned": 13,
+ "search_s": 393.4309813976288,
+ "inner_cv": "GroupKFold(4) over spatial blocks",
+ "budget": {
+  "n_trials": 40,
+  "inner_folds": 4,
+  "metric": "roc_auc",
+  "max_rounds": 3000,
+  "svm_max_rows": 6000
+ }
+}

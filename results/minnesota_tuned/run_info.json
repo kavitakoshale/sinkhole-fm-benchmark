@@ -1,0 +1,146 @@
+{
+ "date": "2026-10-21 07:44",
+ "python": "3.12.13",
+ "sklearn": "1.9.1",
+ "xgboost": "3.4.1",
+ "lightgbm": "4.7.0",
+ "catboost": "1.2.10",
+ "optuna": "5.0.0",
+ "host": "<gpu-server>",
+ "cpu_count": 128,
+ "env": {
+  "OMP_NUM_THREADS": "4"
+ },
+ "budgets": {
+  "xgboost_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "xgboost_tuned_bag": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "lightgbm_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "lightgbm_tuned_bag": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "catboost_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "catboost_tuned_bag": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "random_forest_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "logreg_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "svm_rbf_tuned": {
+   "n_trials": 40,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  }
+ },
+ "args": {
+  "task": "minnesota",
+  "feature_set": "sat_nolc",
+  "neg": [
+   "global",
+   "ring"
+  ],
+  "protocols": [
+   "random5",
+   "spatial5",
+   "temporal"
+  ],
+  "models": [
+   "xgboost_tuned",
+   "xgboost_tuned_bag",
+   "lightgbm_tuned",
+   "lightgbm_tuned_bag",
+   "catboost_tuned",
+   "catboost_tuned_bag",
+   "random_forest_tuned",
+   "logreg_tuned",
+   "svm_rbf_tuned"
+  ],
+  "n_rep": 5,
+  "seed": 0,
+  "jobs": 28,
+  "tag": "tuned"
+ },
+ "numeric_features": [
+  "elev_m",
+  "slope_deg",
+  "laplacian_curv",
+  "tpi_150m",
+  "relief_150m",
+  "elev_std_150m",
+  "depth_below_max_150m",
+  "height_above_min_150m",
+  "slope_mean_150m",
+  "tpi_300m",
+  "relief_300m",
+  "elev_std_300m",
+  "depth_below_max_300m",
+  "height_above_min_300m",
+  "slope_mean_300m",
+  "tpi_600m",
+  "relief_600m",
+  "elev_std_600m",
+  "depth_below_max_600m",
+  "height_above_min_600m",
+  "slope_mean_600m",
+  "dep_fill_depth_m",
+  "dep_inside",
+  "dep_dist_m",
+  "dep_count_500m",
+  "dep_area_frac_500m",
+  "dep_max_depth_500m",
+  "dep_count_1000m",
+  "dep_area_frac_1000m",
+  "dep_max_depth_1000m",
+  "dep_count_2000m",
+  "dep_area_frac_2000m",
+  "dep_max_depth_2000m",
+  "ppt_annual_mm"
+ ],
+ "categorical_features": [],
+ "n_rows": 39328,
+ "wall_s": 4647.652125120163
+}

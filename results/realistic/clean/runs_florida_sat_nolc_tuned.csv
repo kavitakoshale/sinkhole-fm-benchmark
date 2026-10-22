@@ -1,0 +1,3 @@
+region,feature_set,n_verified,variant,fold,rep,model,n_train,pos_train,n_test,pos_test,roc_auc,pr_auc,seconds
+florida,sat_nolc,53,train_all_others,all,0,xgboost_tuned,5391,2683,81,53,0.6933962264150944,0.8131258606929707,210.1
+florida,sat_nolc,53,train_outside_test_blocks,all,0,xgboost_tuned,3604,1582,81,53,0.5956873315363881,0.7806957313817409,126.1

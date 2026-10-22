@@ -1,0 +1,30 @@
+{
+ "best_params": {
+  "learning_rate": 0.008052782224139302,
+  "max_depth": 4,
+  "min_child_weight": 0.012444611316291291,
+  "subsample": 0.7575650267671564,
+  "colsample_bylevel": 0.9391109798952221,
+  "colsample_bynode": 0.7607492349475058,
+  "reg_alpha": 0.01305649063205893,
+  "reg_lambda": 0.445802151106702
+ },
+ "best_value": 0.9710403666995857,
+ "best_iters": [
+  2563,
+  2995,
+  2818,
+  2993
+ ],
+ "n_trials": 100,
+ "n_pruned": 50,
+ "search_s": 737.495858669281,
+ "inner_cv": "GroupKFold(4) over spatial blocks",
+ "budget": {
+  "n_trials": 100,
+  "inner_folds": 4,
+  "metric": "roc_auc",
+  "max_rounds": 3000,
+  "svm_max_rows": 6000
+ }
+}

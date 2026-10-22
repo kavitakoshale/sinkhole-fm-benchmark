@@ -1,0 +1,30 @@
+{
+ "best_params": {
+  "learning_rate": 0.024877520905170602,
+  "max_depth": 10,
+  "min_child_weight": 0.10304090407388948,
+  "subsample": 0.6328379689100099,
+  "colsample_bylevel": 0.7465369606700082,
+  "colsample_bynode": 0.9403402016018007,
+  "reg_alpha": 0.008110997000437728,
+  "reg_lambda": 0.00013422181319716327
+ },
+ "best_value": 0.8998015873015873,
+ "best_iters": [
+  129,
+  246,
+  46,
+  66
+ ],
+ "n_trials": 100,
+ "n_pruned": 26,
+ "search_s": 27.656225442886353,
+ "inner_cv": "StratifiedKFold(4) (no groups given)",
+ "budget": {
+  "n_trials": 100,
+  "inner_folds": 4,
+  "metric": "roc_auc",
+  "max_rounds": 3000,
+  "svm_max_rows": 6000
+ }
+}

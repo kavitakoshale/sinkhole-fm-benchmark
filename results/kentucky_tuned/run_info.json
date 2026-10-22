@@ -1,0 +1,122 @@
+{
+ "date": "2026-10-21 04:47",
+ "python": "3.12.13",
+ "sklearn": "1.9.1",
+ "xgboost": "3.4.1",
+ "lightgbm": "4.7.0",
+ "catboost": "1.2.10",
+ "optuna": "5.0.0",
+ "host": "<gpu-server>",
+ "cpu_count": 128,
+ "env": {
+  "OMP_NUM_THREADS": "4"
+ },
+ "budgets": {
+  "xgboost_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "xgboost_tuned_bag": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "lightgbm_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "lightgbm_tuned_bag": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "catboost_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "catboost_tuned_bag": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "random_forest_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "logreg_tuned": {
+   "n_trials": 100,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  },
+  "svm_rbf_tuned": {
+   "n_trials": 40,
+   "inner_folds": 4,
+   "metric": "roc_auc",
+   "max_rounds": 3000,
+   "svm_max_rows": 6000
+  }
+ },
+ "args": {
+  "task": "kentucky",
+  "feature_set": null,
+  "neg": [
+   "global",
+   "ring"
+  ],
+  "protocols": [
+   "paper80_20",
+   "loco",
+   "scott"
+  ],
+  "models": [
+   "xgboost_tuned",
+   "xgboost_tuned_bag",
+   "lightgbm_tuned",
+   "lightgbm_tuned_bag",
+   "catboost_tuned",
+   "catboost_tuned_bag",
+   "random_forest_tuned",
+   "logreg_tuned",
+   "svm_rbf_tuned"
+  ],
+  "n_rep": 5,
+  "seed": 0,
+  "jobs": 20,
+  "tag": "tuned"
+ },
+ "numeric_features": [
+  "perimeter_m",
+  "area_m2",
+  "compactness",
+  "depth_max_m",
+  "depth_mean_m",
+  "depth_std_m",
+  "depth_sum_m",
+  "ring_slope_mean_deg",
+  "ring_slope_std_deg",
+  "depth_index"
+ ],
+ "categorical_features": [],
+ "n_rows": 49926,
+ "wall_s": 4605.09491109848
+}

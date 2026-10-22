@@ -1,0 +1,11 @@
+task,fold,kind,rate,rep,model,n_train,pos_train,roc_auc,pr_auc,seconds
+kentucky,test_Bourbon,symmetric,0.0,0,xgboost_tuned,22619,4348,0.9631397855037257,0.8055906004865947,855.94
+kentucky,test_Bourbon,pos_to_neg,0.0,0,xgboost_tuned,22619,4348,0.9631397855037257,0.8055906004865947,855.94
+kentucky,test_Bourbon,symmetric,0.05,0,xgboost_tuned,22619,5065,0.9559013509710103,0.793156180096672,413.45
+kentucky,test_Bourbon,symmetric,0.1,0,xgboost_tuned,22619,5772,0.9531001229502125,0.7831430554113216,215.92
+kentucky,test_Bourbon,symmetric,0.2,0,xgboost_tuned,22619,7080,0.942064415542092,0.7658266651914675,190.64
+kentucky,test_Bourbon,symmetric,0.3,0,xgboost_tuned,22619,8522,0.9279302887108004,0.7125833242539626,66.86
+kentucky,test_Bourbon,pos_to_neg,0.05,0,xgboost_tuned,22619,4131,0.9627885997007718,0.8038285111189186,634.69
+kentucky,test_Bourbon,pos_to_neg,0.1,0,xgboost_tuned,22619,3913,0.9620903017464855,0.8000073323710704,719.62
+kentucky,test_Bourbon,pos_to_neg,0.2,0,xgboost_tuned,22619,3478,0.9605715703556668,0.7911997853818997,950.27
+kentucky,test_Bourbon,pos_to_neg,0.3,0,xgboost_tuned,22619,3044,0.9603869228376316,0.7936354883723485,791.19
