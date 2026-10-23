@@ -16,7 +16,7 @@ Levels A to C use the committed tables in `data/processed/` and their fold colum
 ## 1. Setup
 
 ```bash
-git clone https://github.com/<org>/sinkhole-fm-benchmark.git && cd sinkhole-fm-benchmark
+git clone https://github.com/kavitakoshale/sinkhole-fm-benchmark.git && cd sinkhole-fm-benchmark
 uv venv .venv --python 3.12 && source .venv/bin/activate
 uv pip install -r requirements.txt
 cp .env.example .env                                                     # optional; every setting has a default
@@ -44,12 +44,12 @@ What each check shows, with indicative run times (4 threads per process):
 - `reproduce_check.py` (about 40 s) refits three baselines and compares every per-fold metric with
   `results/florida_no_landcover/metrics_long.csv`. Expected: identical on the CPUs used for the paper; on another CPU
   type differences of less than 0.0001 AUC (the check allows 0.001).
-- `verify_headline.py --checks comparisons --tasks florida` (about 5 min) recomputes Table 2's Florida rows from the
+- `verify_headline.py --checks comparisons --tasks florida` (about 5 min) recomputes the seed-0 Florida headline comparisons (Supplementary Section S1) from the
   released predictions. Pooled AUC, PR-AUC and ΔAUC must be identical. The bootstrap intervals are printed next to the
   committed ones and differ by Monte-Carlo noise of up to 0.006, because `compare_models.py` draws every setting of a
   table from one random stream and only the headline settings are released.
-- `verify_headline.py` with no options also runs Kentucky and Minnesota, the five-seed statistics (block × seed
-  intervals, DeLong, Holm) and the decision table (Table 4); this takes roughly an hour, and Kentucky's row bootstrap is the
+- `verify_headline.py` with no options also runs Kentucky and Minnesota, the five-seed statistics of Table 2 (block × seed
+  intervals, DeLong, Holm) and the decision table (Supplementary Table S38); this takes roughly an hour, and Kentucky's row bootstrap is the
   slowest part. Seeds and decision table must be identical. The script restores every file it touches.
 - `positional_accuracy.py` recomputes the supplement's AUC-by-location-accuracy table; the file must not change.
 - `collect_results.py` rebuilds `results/README.md` from `results/`; it must not change.
@@ -70,7 +70,7 @@ python baselines/run_florida_baselines.py                                       
 python baselines/run_florida_baselines.py --feature-set no_landcover --tag no_landcover   # results/florida_no_landcover
 # Kentucky depressions (Zhu et al. 2020 protocol + leave-one-county-out + Scott County)
 python baselines/run_kentucky_baselines.py                                         # results/kentucky
-# shared satellite schema: Minnesota and Florida, three feature sets each
+# shared public-layer schema: Minnesota and Florida, three feature sets each
 for r in minnesota florida_shared; do
   python baselines/run_region_baselines.py --region $r                             # results/$r            (sat_nolc, headline)
   python baselines/run_region_baselines.py --region $r --feature-set sat_all       # results/${r}_sat_all
@@ -108,7 +108,7 @@ When no local path is set, the adapters (`baselines/fm_models.py`) download the 
 
 TabPFN is stored in `<HF_HOME>/tabpfn/<commit>/` (or `TABPFN_MODEL_CACHE_DIR`), and TabICL and Kumo in the standard HF
 cache. To use local copies instead, set `TABPFN_MODEL_PATH`, `TABICL_MODEL_PATH` and `KUMO_CHECKPOINT_DIR`. After the first
-download, `HF_HUB_OFFLINE=1` runs without network. As a check of the download path, the CPU-only TabPFN rows of Table 5
+download, `HF_HUB_OFFLINE=1` runs without network. As a check of the download path, the CPU-only TabPFN rows of Supplementary Table S47
 (`results/fm_cost/cpu.csv`; 500-row five-factor context, `FM_DEVICE=cpu`) reproduce exactly with the downloaded weights.
 
 ### Pre-flight
@@ -126,13 +126,13 @@ export FM_PRECISION=fp32
 # Florida (68 and 49 features) and Kentucky; each call also writes a quick comparison table
 TAG=fm_fp32     MODELS="tabpfn kumo_tabular" bash scripts/run_fm_experiments.sh   # results/{florida,kentucky}_fm_fp32*, florida_fm_fp32_no_landcover
 TAG=tabicl_fp32 MODELS="tabicl"              bash scripts/run_fm_experiments.sh   # results/*_tabicl_fp32*
-# shared satellite schema
+# shared public-layer schema
 for r in minnesota florida_shared; do
   for fs in sat_nolc sat_all terrain; do
     python baselines/run_region_baselines.py --region $r --feature-set $fs --models tabpfn tabicl kumo_tabular --tag fm_fp32
   done                                                                           # results/${r}_fm_fp32[_sat_all|_terrain]
 done
-# precision check, bf16 vs fp32 (Supplementary Table S63)
+# precision check, bf16 vs fp32 (Supplementary Section S16)
 FM_PRECISION=bf16 TAG=fm_bf16     MODELS="tabpfn kumo_tabular" bash scripts/run_fm_experiments.sh
 FM_PRECISION=bf16 TAG=tabicl_bf16 MODELS="tabicl"              bash scripts/run_fm_experiments.sh
 ```
@@ -152,46 +152,52 @@ contain. Where a study was run in shards (`--folds`, `--suffix`), the `summarize
 unsharded call gives the same files.
 
 ```bash
-# M3 seed study: five seeds of the headline family (Table 2, columns 6-8)
+# seed study: five seeds of the headline family (Table 2)
 for t in florida kentucky minnesota; do
   python scripts/seed_study.py run --task $t                                   # xgboost lightgbm catboost + the three FMs
   python scripts/seed_study.py run --task $t --models xgboost_tuned --jobs 24  # tuned reference (CPU)
 done
 python scripts/seed_study.py summarize                                         # results/seeds/summary.{md,csv}
 
-# M6 learning curves and label noise (Table 3, Figs. 2-3b); mlp10 is added on Kentucky automatically
+# learning curves and label noise (Table 3, Figs. 2 and 3b; Supplementary S3-S4); mlp10 is added on Kentucky automatically
 for e in learning_curve label_noise; do
   python scripts/fm_scenarios.py $e
   python scripts/fm_scenarios.py $e --models tabicl xgboost_tuned --suffix _m6
 done
-python scripts/fm_scenarios.py rotation --tasks kentucky                       # rotation test (supplement)
-python scripts/fm_scenarios.py calibration                                     # calibration tables (supplement; needs the grids)
-python scripts/fm_scenarios.py blend                                           # FM + GBDT averages (supplement; needs the grids)
+python scripts/fm_scenarios.py rotation --tasks kentucky                       # rotation test (Supplementary S15)
+python scripts/fm_scenarios.py calibration                                     # calibration tables (Supplementary S10; needs the grids)
+python scripts/fm_scenarios.py blend                                           # FM + GBDT averages (needs the grids)
 python scripts/fm_scenarios.py summarize
 
-python scripts/feature_sets.py                                                 # feature-source ablation, 5-68 factors (Table 3, Fig. 3a)
+python scripts/feature_sets.py                                                 # feature-source ablation, 5-68 factors (Fig. 3a, Supplementary S5)
 
-# M5 realistic regime: county few-shot, clean-label test sets, 1:10 / 1:20 prevalence (Table 3, Fig. 3c)
+# realistic regime: county few-shot, clean-label test sets, 1:10 / 1:20 prevalence (Table 3, Fig. 3c; Supplementary S6)
 for e in county clean prevalence; do
   python scripts/realistic_benchmark.py $e
   python scripts/realistic_benchmark.py $e --models xgboost_tuned --suffix _tuned
 done
 python scripts/realistic_benchmark.py summarize
 
-# S1 transfer between states and S2 context selection (Section 4.6)
+# transfer between states and context selection (Section 4.6; Supplementary S7-S8)
 python scripts/transfer.py --source florida_shared --target minnesota
 python scripts/transfer.py --source minnesota --target florida_shared
 python scripts/transfer.py --summarize
 python scripts/context_selection.py
 
-python scripts/decision_analysis.py                                            # M8, Table 4 and Fig. 4 (from the grids)
-FM_PRECISION=bf16 python scripts/fm_cost.py scaling                            # M9, Table 5 (bf16, as reported)
-python scripts/fm_cost.py cpu                                                  # Table 5, CPU-only rows
-python scripts/fm_sensitivity.py                                               # seed x n_estimators sensitivity (supplement)
-python scripts/interpret.py                                                    # M7 factors, Fig. 6
-python scripts/florida/03_predict_raster.py grid                               # M7 maps, Fig. 5: 1 km grid (needs data/raw)
+python scripts/decision_analysis.py                                            # Fig. 4, Supplementary Table S38 (from the grids)
+FM_PRECISION=bf16 python scripts/fm_cost.py scaling                            # Supplementary Table S47 (bf16, as reported)
+python scripts/fm_cost.py cpu                                                  # Supplementary Table S47, CPU-only rows
+python scripts/fm_sensitivity.py                                               # seed x n_estimators sensitivity (Supplementary S16)
+python scripts/interpret.py                                                    # conditioning factors, Fig. 6
+python scripts/florida/03_predict_raster.py grid                               # statewide maps, Fig. 5: 1 km grid (needs data/raw)
 python scripts/florida/03_predict_raster.py predict --models tabpfn tabicl kumo_tabular xgboost xgboost_tuned
-python scripts/positional_accuracy.py                                          # S6, supplement
+python scripts/positional_accuracy.py                                          # Supplementary S14
+
+# spatially separated small-data evaluation (Table 3 buffer rows; Supplementary S20, Tables S70-S78)
+python scripts/buffered_smalldata.py county                                    # county few-shot with a train-test buffer
+python scripts/buffered_smalldata.py curve                                     # buffered learning curve, 0/2.5/5/10 km (hours)
+python scripts/buffered_smalldata.py kentucky_cells                            # Kentucky 0.05-degree cell bootstrap (released predictions)
+python scripts/buffered_smalldata.py summarize                                 # results/buffered/summary.md
 python scripts/collect_results.py                                              # results/README.md
 ```
 
@@ -209,7 +215,8 @@ the CPU.
 |---|---|---|
 | Headline FM runs (grids) and the other GPU studies unless listed below | 1 × NVIDIA RTX PRO 6000 Blackwell (96 GB); the largest fit (Kentucky, 34k context) peaked at 9.3 GiB | fp32 for the headline runs (`run_info.json` records each run) |
 | Kentucky learning-curve and label-noise shards | 4 × NVIDIA A10 (24 GB), one process per GPU | bf16 |
-| Cost table (Table 5) | RTX PRO 6000, shared with other jobs (upper bounds) | bf16 |
+| Spatially separated small-data evaluation (Supplementary S20) | same GPU, 5 FM processes in parallel; peak 9.6-18.4 GiB per process | fp32 |
+| Cost table (Supplementary Table S47) | RTX PRO 6000, shared with other jobs (upper bounds) | bf16 |
 | Tuned baselines | 128 CPU cores | – |
 
 A full FM grid took about 15 min, and the complete study about 12 h on this hardware. On a GPU with less memory, set
@@ -220,15 +227,16 @@ A full FM grid took about 15 min, and the complete study about 12 h on this hard
 | Paper item | Produced by | Files |
 |---|---|---|
 | Table 1, Fig. 1 | Section 6 pipelines | `data/processed/*` |
-| Table 2 (headline, seed 0) | grids + `regen_comparisons.sh` | `results/comparison_{florida_no_landcover_tuned_fp32,kentucky_tuned_fp32,minnesota_sat_nolc}*.csv` |
 | Table 2 (five seeds) | `seed_study.py` | `results/seeds/summary.csv` |
-| Table 3, Figs. 2–3 | `fm_scenarios.py`, `feature_sets.py`, `realistic_benchmark.py` | `results/fm_scenarios/`, `results/realistic/` |
-| Table 4, Fig. 4 | `decision_analysis.py` | `results/decision/` |
-| Section 4.6 | `transfer.py`, `context_selection.py` | `results/transfer/`, `results/context_selection/` |
-| Table 5 | `fm_cost.py` | `results/fm_cost/` |
-| Fig. 5 | `03_predict_raster.py` | `results/maps/*.tif` |
-| Fig. 6 | `interpret.py` | `results/interpret/` |
-| Supplement | all of the above | `results/README.md` (every table), `results/tuning_cache/`, `results/fm_sensitivity/`, `results/positional_accuracy.md` |
+| Seed-0 grids (Supplementary S1-S2) | grids + `regen_comparisons.sh` | `results/comparison_{florida_no_landcover_tuned_fp32,kentucky_tuned_fp32,minnesota_sat_nolc}*.csv` |
+| Table 3, Figs. 2-3 (full version: Supplementary S21) | `fm_scenarios.py`, `feature_sets.py`, `realistic_benchmark.py`, `buffered_smalldata.py` | `results/fm_scenarios/`, `results/realistic/`, `results/buffered/` |
+| Fig. 4, Supplementary S9 (Table S38) | `decision_analysis.py` | `results/decision/` |
+| Section 4.6, Supplementary S7-S8 | `transfer.py`, `context_selection.py` | `results/transfer/`, `results/context_selection/` |
+| Supplementary S11 (Table S47) | `fm_cost.py` | `results/fm_cost/` |
+| Fig. 5, Supplementary S12 | `03_predict_raster.py` | `results/maps/*.tif` |
+| Fig. 6, Supplementary S13 | `interpret.py` | `results/interpret/` |
+| Supplementary S20 (Tables S70-S78) | `buffered_smalldata.py` | `results/buffered/` |
+| Rest of the supplement | all of the above | `results/README.md` (every table), `results/tuning_cache/`, `results/fm_sensitivity/`, `results/positional_accuracy.md` |
 
 ## 6. Level D: rebuild the benchmark tables from raw data
 

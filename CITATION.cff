@@ -2,10 +2,11 @@ cff-version: 1.2.0
 message: "If you use this code or benchmark, please cite the paper below."
 title: "sinkhole-fm-benchmark: tabular foundation models vs tuned gradient boosting for sinkhole susceptibility"
 type: software
-version: 1.0.0
-date-released: 2026-10-22
+version: 1.1.0
+date-released: 2026-10-23
 license: MIT
-# add after publishing: repository-code (GitHub URL) and doi (Zenodo DOI of the archived release)
+repository-code: "https://github.com/kavitakoshale/sinkhole-fm-benchmark"
+# add after the Zenodo deposit: doi
 keywords:
   - sinkhole susceptibility
   - tabular foundation models
@@ -18,6 +19,7 @@ authors:
     given-names: Kavita
     email: kbanjare.phd2024.ce@nitrr.ac.in
     affiliation: "National Institute of Technology Raipur"
+    orcid: "https://orcid.org/0009-0001-8106-8677"
 preferred-citation:
   type: article
   title: "Tabular foundation models versus tuned gradient boosting for sinkhole susceptibility in data-poor karst regions"
@@ -28,4 +30,13 @@ preferred-citation:
     - family-names: Banjare
       given-names: Kavita
       email: kbanjare.phd2024.ce@nitrr.ac.in
+      affiliation: "National Institute of Technology Raipur"
+      orcid: "https://orcid.org/0009-0001-8106-8677"
+    - family-names: Chouksey
+      given-names: Sandeep Kumar
+      email: schouksey.ce@nitrr.ac.in
+      affiliation: "National Institute of Technology Raipur"
+    - family-names: Singh
+      given-names: Chandan Kumar
+      email: cksingh.ce@nitrr.ac.in
       affiliation: "National Institute of Technology Raipur"

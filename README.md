@@ -2,10 +2,10 @@
 
 Code, benchmark tables and results for
 
-> K. Banjare, *Tabular foundation models versus tuned gradient boosting for sinkhole susceptibility in data-poor karst
+> K. Banjare, S. K. Chouksey, C. K. Singh, *Tabular foundation models versus tuned gradient boosting for sinkhole susceptibility in data-poor karst
 > regions*. Submitted to *Computers & Geosciences*, 2026.
 
-Three tabular foundation models (TabPFN-3.5, TabICLv2, NVIDIA Kumo-Tabular) are used **without any training or tuning**:
+Three tabular foundation models (TabPFN-3.5, TabICLv2, NVIDIA Kumo-Tabular) are used **without task-specific training or tuning**:
 the labelled sites are a fixed context at inference time. They are compared with default and nested-spatial-CV-tuned
 gradient boosting (XGBoost, LightGBM, CatBoost), random forest, RBF-SVM and logistic regression. All models use identical
 folds and pseudo-absences in three karst regions:
@@ -14,28 +14,30 @@ folds and pseudo-absences in three karst regions:
 |---|---|---|---|---|
 | Florida | 2,736 FGS Subsidence Incident Reports + ring / global pseudo-absences | 8,208 | 68 (headline `no_landcover`: 49) | random 5-fold, **25 km spatial-block 5-fold**, **temporal** (< 2010 → ≥ 2010) |
 | Kentucky Bluegrass | LiDAR depressions labelled by the KGS sinkhole inventory ([Zhu et al. 2020](https://doi.org/10.1016/j.jhydrol.2020.125049) task) | 49,926 | 10 morphometric | random 80/20 × 5, **leave-one-county-out**, 3 counties → Scott |
-| SE Minnesota | 13,144 Karst Feature Inventory sinkholes + paired ring pseudo-absences | 39,328 | satellite-only schema (headline `sat_nolc`: 34) | random 5-fold, **25 km spatial-block 5-fold**, location-method split |
+| SE Minnesota | 13,144 Karst Feature Inventory sinkholes + paired ring pseudo-absences | 39,328 | shared public-layer schema: DEM terrain, DEM depressions, WorldCover, PRISM (headline `sat_nolc`: 34) | random 5-fold, **25 km spatial-block 5-fold**, location-method split |
 
 Settings in bold form the headline family. It was fixed before the tuned baselines and seed replications were run; the
 definition is in [`results/headline_family.md`](results/headline_family.md).
 
 ## Headline results
 
-Pooled out-of-fold ROC-AUC (seed 0). The last column is the five-seed ΔAUC of the best foundation model against tuned
-XGBoost, with a 95 % interval that resamples spatial blocks and seeds (Kentucky: rows).
+Five seeds per model, as in Table 2 of the paper: mean pooled out-of-fold ROC-AUC, and the best foundation model's ΔAUC
+against tuned XGBoost with a 95 % interval that resamples spatial blocks and seeds (Kentucky: rows). Seed-0 values are in
+`results/comparison_*.csv`.
 
-| Setting | tuned XGBoost | TabPFN-3.5 | TabICLv2 | Kumo-Tabular | Best FM, 5-seed ΔAUC [95 % CI] |
+| Setting | tuned XGBoost | TabPFN-3.5 | TabICLv2 | Kumo-Tabular | Best FM, ΔAUC vs tuned XGBoost [95 % CI] |
 |---|---|---|---|---|---|
-| Florida, no land cover, ring, spatial-block CV | 0.765 | **0.785** | 0.775 | 0.767 | TabPFN +0.012 [−0.004, +0.029] |
-| Florida, temporal split | 0.770 | 0.790 | 0.787 | **0.799** | Kumo +0.027 [+0.013, +0.043] |
+| Florida, no land cover, ring, spatial-block CV | 0.769 | **0.781** | 0.777 | 0.767 | TabPFN +0.012 [−0.004, +0.029] |
+| Florida, temporal split | 0.770 | 0.788 | 0.784 | **0.797** | Kumo +0.027 [+0.013, +0.043] |
 | Kentucky, leave-one-county-out | 0.965 | 0.971 | **0.972** | 0.971 | TabICL +0.006 [+0.005, +0.007] |
-| Minnesota, `sat_nolc`, ring, spatial-block CV | 0.836 | **0.852** | 0.840 | 0.837 | TabPFN +0.015 [−0.004, +0.052] |
+| Minnesota, `sat_nolc`, ring, spatial-block CV | 0.837 | **0.851** | 0.839 | 0.836 | TabPFN +0.015 [−0.004, +0.052] |
 
 The foundation models gain most when data are scarce. They score +0.02 to +0.03 AUC higher than tuned XGBoost with at most
-1,000 labels, +0.03 to +0.05 with 25 to 100 labels per county and +0.03 with five conditioning factors. Under 30 % label
-noise, two of the three lose less AUC than tuned XGBoost. They show no advantage once a land-cover proxy of reporting effort
-is among the features. They are not better calibrated under spatial shift, and they do not transfer zero-shot between
-states. [`results/README.md`](results/README.md) has every table with confidence intervals, seed statistics and DeLong/Holm
+1,000 labels, which holds under a 5 km train–test buffer in both states (and 10 km in Minnesota, not Florida), and +0.03 to
++0.05 with 25 to 100 local sinkholes per county. With five conditioning factors they gain +0.03 against hand-set XGBoost (a
+feature-source comparison), and under 30 % label noise two of the three lose less AUC than tuned XGBoost. With a land-cover
+proxy of reporting effort among the Florida features, their spatial-block gains are at most +0.005, with intervals
+including zero. They are not better calibrated under spatial shift, and they do not transfer zero-shot between states. [`results/README.md`](results/README.md) has every table with confidence intervals, seed statistics and DeLong/Holm
 tests.
 
 ## Repository layout
@@ -62,6 +64,7 @@ scripts/fm_sensitivity.py     seed x n_estimators sensitivity of the FMs        
 scripts/interpret.py          permutation / group importance, partial dependence                       -> results/interpret
 scripts/florida/03_predict_raster.py  1 km statewide Florida maps from one fixed context              -> results/maps
 scripts/positional_accuracy.py AUC by report location-accuracy class                                  -> results/positional_accuracy.md
+scripts/buffered_smalldata.py county few-shot with a train-test buffer, buffered learning curve, Kentucky cell bootstrap -> results/buffered
 scripts/florida/, kentucky/, minnesota/, shared_features.py   data pipelines (need data/raw)
 scripts/regen_comparisons.sh  every paired comparison table; scripts/collect_results.py -> results/README.md
 scripts/reproduce_check.py    CPU check: refits the baselines and compares with the committed per-fold metrics
@@ -175,14 +178,15 @@ from and whether they are already cached.
 | Paper | Files |
 |---|---|
 | Table 1, Fig. 1 (data, folds) | `data/processed/*`, `data/README.md`, `scripts/{florida,kentucky,minnesota}/` |
-| Table 2 (headline family) | `results/comparison_florida_no_landcover_tuned_fp32_ref_xgbtuned.csv`, `results/comparison_kentucky_tuned_fp32_ref_xgbtuned.csv`, `results/comparison_minnesota_sat_nolc_ref_xgbtuned.csv`, `results/seeds/summary.csv` |
-| Table 3, Figs. 2–3 (data-poor regime) | `results/fm_scenarios/{learning_curve,label_noise,feature_sets}/`, `results/realistic/county/` |
-| Table 4, Fig. 4 (calibration, prioritisation) | `results/decision/`, `results/fm_scenarios/calibration/`, `results/realistic/prevalence/` |
-| Transfer, context selection | `results/transfer/`, `results/context_selection/` |
-| Table 5 (cost) | `results/fm_cost/` |
-| Fig. 5 (statewide maps) | `results/maps/*.tif`, `results/maps/summary.md` |
-| Fig. 6 (conditioning factors) | `results/interpret/` |
-| Supplementary tables | `results/README.md` (all sections), `results/tuning_cache/` and `baselines/tuned.py` (search spaces), `scripts/feature_sets.py` (feature sets) |
+| Table 2 (headline family, five seeds) | `results/seeds/summary.csv`; seed-0 grids (Supplementary S1–S2): `results/comparison_{florida_no_landcover_tuned_fp32,kentucky_tuned_fp32,minnesota_sat_nolc}*.csv` |
+| Table 3, Figs. 2–3 (data-poor regime; full version Supplementary S21, Table S79) | `results/fm_scenarios/{learning_curve,label_noise,feature_sets}/`, `results/realistic/county/`, `results/buffered/curve/` |
+| Fig. 4, Supplementary S9–S10 (decision analysis, Table S38; calibration) | `results/decision/`, `results/fm_scenarios/calibration/`, `results/realistic/prevalence/` |
+| Section 4.6, Supplementary S7–S8 (transfer, context selection) | `results/transfer/`, `results/context_selection/` |
+| Supplementary S11 (cost, Table S47) | `results/fm_cost/` |
+| Fig. 5, Supplementary S12 (statewide maps) | `results/maps/*.tif`, `results/maps/summary.md` |
+| Fig. 6, Supplementary S13 (conditioning factors) | `results/interpret/` |
+| Supplementary S20 (spatially separated small-data evaluation, Tables S70–S78) | `results/buffered/`, `scripts/buffered_smalldata.py` |
+| Other supplementary sections | `results/README.md` (every table), `results/positional_accuracy.md` (S14), `results/fm_scenarios/rotation/` (S15), `results/fm_sensitivity/` (S16), `results/tuning_cache/` and `baselines/tuned.py` (S17), `scripts/feature_sets.py` (S5) |
 
 ## Adding a model
 

@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-23 02:21",
+ "host": "<gpu-server>",
+ "python": "3.12.13",
+ "git": "not a git repository",
+ "versions": {
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "scipy": "1.18.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.4.1",
+  "lightgbm": "4.7.0",
+  "catboost": "1.2.10",
+  "optuna": "5.0.0",
+  "torch": "2.14.1+cu130",
+  "tabpfn": "9.2.0"
+ },
+ "args": {
+  "experiment": "county",
+  "regions": [
+   "florida",
+   "minnesota"
+  ],
+  "models": [
+   "xgboost",
+   "random_forest",
+   "tabpfn",
+   "tabicl",
+   "kumo_tabular"
+  ],
+  "k": [
+   25,
+   50,
+   100
+  ],
+  "seeds": 3,
+  "modes": [
+   "paired",
+   "independent"
+  ],
+  "buffers": [
+   0.0,
+   1.0,
+   2.5,
+   5.0,
+   10.0
+  ],
+  "folds": null,
+  "sizes": [
+   50,
+   100,
+   250,
+   500,
+   1000,
+   2000
+  ],
+  "reps": 5,
+  "n_boot": 1000,
+  "suffix": ""
+ },
+ "fm_precision": "fp32",
+ "device": "cuda",
+ "cuda_visible_devices": null,
+ "wall_seconds": 6839,
+ "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+ "gpu_peak_allocated_gb": 18.4,
+ "gpu_peak_reserved_gb": 20.83
+}

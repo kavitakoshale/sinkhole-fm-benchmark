@@ -1,0 +1,1107 @@
+{
+ "date": "2026-10-23 05:19",
+ "git": "not a git repository",
+ "versions": {
+  "numpy": "2.5.4",
+  "pandas": "3.0.6",
+  "scipy": "1.18.1",
+  "sklearn": "1.9.1",
+  "xgboost": "3.4.1",
+  "lightgbm": "4.7.0",
+  "catboost": "1.2.10",
+  "optuna": "5.0.0",
+  "torch": "2.14.1+cu130",
+  "tabpfn": "9.2.0"
+ },
+ "n_processes": 17,
+ "fm_precision": [
+  "fp32"
+ ],
+ "device": [
+  "cuda"
+ ],
+ "gpu": [
+  "NVIDIA RTX PRO 6000 Blackwell Server Edition"
+ ],
+ "gpu_peak_allocated_gb_max": 18.4,
+ "gpu_peak_reserved_gb_max": 23.3,
+ "processes": [
+  {
+   "date": "2026-10-23 02:21",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "county",
+    "regions": [
+     "florida",
+     "minnesota"
+    ],
+    "models": [
+     "xgboost",
+     "random_forest",
+     "tabpfn",
+     "tabicl",
+     "kumo_tabular"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     1.0,
+     2.5,
+     5.0,
+     10.0
+    ],
+    "folds": null,
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": ""
+   },
+   "fm_precision": "fp32",
+   "device": "cuda",
+   "cuda_visible_devices": null,
+   "wall_seconds": 6839,
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+   "gpu_peak_allocated_gb": 18.4,
+   "gpu_peak_reserved_gb": 20.83
+  },
+  {
+   "date": "2026-10-23 01:42",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "county",
+    "regions": [
+     "florida",
+     "minnesota"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     1.0,
+     2.5,
+     5.0,
+     10.0
+    ],
+    "folds": null,
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 4500
+  },
+  {
+   "date": "2026-10-23 02:36",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost",
+     "random_forest",
+     "tabpfn",
+     "tabicl",
+     "kumo_tabular"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "0",
+     "1",
+     "2"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_f012"
+   },
+   "fm_precision": "fp32",
+   "device": "cuda",
+   "cuda_visible_devices": null,
+   "wall_seconds": 7748,
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+   "gpu_peak_allocated_gb": 9.61,
+   "gpu_peak_reserved_gb": 23.3
+  },
+  {
+   "date": "2026-10-23 01:58",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost",
+     "random_forest",
+     "tabpfn",
+     "tabicl",
+     "kumo_tabular"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "3",
+     "4"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_f34"
+   },
+   "fm_precision": "fp32",
+   "device": "cuda",
+   "cuda_visible_devices": null,
+   "wall_seconds": 5438,
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+   "gpu_peak_allocated_gb": 9.59,
+   "gpu_peak_reserved_gb": 22.28
+  },
+  {
+   "date": "2026-10-23 02:51",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "0"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f0"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 8648
+  },
+  {
+   "date": "2026-10-23 03:22",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "1"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f1"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 10500
+  },
+  {
+   "date": "2026-10-23 02:37",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "2"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f2"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 7764
+  },
+  {
+   "date": "2026-10-23 03:05",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "3"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f3"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 9495
+  },
+  {
+   "date": "2026-10-23 02:35",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "florida"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "4"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f4"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 7697
+  },
+  {
+   "date": "2026-10-23 02:06",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost",
+     "random_forest",
+     "tabpfn",
+     "tabicl",
+     "kumo_tabular"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "0",
+     "1"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_f01"
+   },
+   "fm_precision": "fp32",
+   "device": "cuda",
+   "cuda_visible_devices": null,
+   "wall_seconds": 5905,
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+   "gpu_peak_allocated_gb": 12.39,
+   "gpu_peak_reserved_gb": 17.41
+  },
+  {
+   "date": "2026-10-23 02:44",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost",
+     "random_forest",
+     "tabpfn",
+     "tabicl",
+     "kumo_tabular"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "2",
+     "3",
+     "4"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_f234"
+   },
+   "fm_precision": "fp32",
+   "device": "cuda",
+   "cuda_visible_devices": null,
+   "wall_seconds": 8195,
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+   "gpu_peak_allocated_gb": 12.41,
+   "gpu_peak_reserved_gb": 17.64
+  },
+  {
+   "date": "2026-10-23 03:28",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "0"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f0"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 10882
+  },
+  {
+   "date": "2026-10-23 04:09",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "1"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f1"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 13316
+  },
+  {
+   "date": "2026-10-23 05:03",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "2"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f2"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 16536
+  },
+  {
+   "date": "2026-10-23 03:14",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "3"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f3"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 9994
+  },
+  {
+   "date": "2026-10-23 03:10",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "curve",
+    "regions": [
+     "minnesota"
+    ],
+    "models": [
+     "xgboost_tuned"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": [
+     0.0,
+     5.0,
+     10.0,
+     2.5
+    ],
+    "folds": [
+     "4"
+    ],
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": "_tuned_f4"
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 9748
+  },
+  {
+   "date": "2026-10-23 00:30",
+   "host": "<gpu-server>",
+   "python": "3.12.13",
+   "git": "not a git repository",
+   "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "catboost": "1.2.10",
+    "optuna": "5.0.0",
+    "torch": "2.14.1+cu130",
+    "tabpfn": "9.2.0"
+   },
+   "args": {
+    "experiment": "kentucky_cells",
+    "regions": [
+     "florida",
+     "minnesota"
+    ],
+    "models": [
+     "xgboost",
+     "xgboost_tuned",
+     "random_forest",
+     "tabpfn",
+     "tabicl",
+     "kumo_tabular"
+    ],
+    "k": [
+     25,
+     50,
+     100
+    ],
+    "seeds": 3,
+    "modes": [
+     "paired",
+     "independent"
+    ],
+    "buffers": null,
+    "folds": null,
+    "sizes": [
+     50,
+     100,
+     250,
+     500,
+     1000,
+     2000
+    ],
+    "reps": 5,
+    "n_boot": 1000,
+    "suffix": ""
+   },
+   "fm_precision": "bf16",
+   "device": "cuda",
+   "cuda_visible_devices": "",
+   "wall_seconds": 766
+  }
+ ]
+}

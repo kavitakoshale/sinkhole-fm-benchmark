@@ -43,6 +43,7 @@ STUDIES = [
     ("Calibration", "fm_scenarios/calibration/summary.md"),
     ("Rotation test", "fm_scenarios/rotation/summary.md"),
     ("Seed x n_estimators sensitivity", "fm_sensitivity/summary.md"),
+    ("Spatially separated small-data evaluation", "buffered/summary.md"),
 ]
 
 
